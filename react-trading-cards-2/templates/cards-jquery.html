@@ -1,0 +1,84 @@
+{% extends 'base.html' %} {% block title %} Cards {% endblock %} {% block body
+%}
+<div>
+  <h2>Add New Trading Card</h2>
+
+  Name <input type="text" id="nameField" /> Skill
+  <input type="text" id="skillField" />
+  <button id="addCard">Add</button>
+
+  <h2>Trading Cards</h2>
+</div>
+
+<div id="container"></div>
+{% endblock %} {% block js %}
+<script>
+  function getCardData() {
+    // Get the up to date card data from DB.
+
+    $.get("/cards.json", insertCardData);
+  }
+
+  const insertCardData = (response) => {
+    // Once the data has been provided by the server,
+    // insert it into the page as an HTML string.
+    const listOfCards = response.cards;
+
+    const container = $("#container");
+
+    container.empty();
+
+    for (const currentCard of listOfCards) {
+      if (!currentCard.imgUrl) {
+        currentCard.imgUrl = "/static/img/placeholder.png";
+      }
+
+      container.append(`
+          <div class='card'>
+            <p>Name: ${currentCard.name}</p>
+            <img src='${currentCard.imgUrl}'>
+            <p>Skill: ${currentCard.skill} </p>
+          </div>`);
+    }
+  };
+
+  const addNewCard = (evt) => {
+    // Respond to the Add New Card form getting submitted.
+    // This is an event handling function.
+
+    // Get name that user typed in Name field.
+    const name = $("#nameField").val();
+
+    // Get skill that user typed in Skill field.
+    const skill = $("#skillField").val();
+
+    // Make a request to the server to add the card
+    // the server sends us a response with the new card
+    // We then add this card to the page
+    $.post({
+      url: '/add-card',
+      data: JSON.stringify({ name, skill }),
+      contentType: 'application/json'
+    }).done(response => {
+      const { cardAdded } = response // response is an object containing a cardAdded key
+      if (!cardAdded.imgUrl) {
+        cardAdded.imgUrl = "/static/img/placeholder.png";
+      }
+      const container = $("#container");
+
+      container.append(`
+          <div class='card'>
+            <p>Name: ${cardAdded.name}</p>
+            <img src='${cardAdded.imgUrl}'>
+            <p>Skill: ${cardAdded.skill} </p>
+          </div>`);
+    })
+  };
+
+  // Attach the addNewCard function to the 'Add' button click.
+  $("#addCard").on("click", addNewCard);
+
+  // Get intial cards when page initially loads!
+  getCardData();
+</script>
+{% endblock %}

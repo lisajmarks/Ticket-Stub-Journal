@@ -1,5 +1,7 @@
 
 function TradingCard(props) {
+  let img = props.imgUrl
+  
   return (
     <div className="card">
       <p>Name: {props.name}</p>
@@ -10,13 +12,14 @@ function TradingCard(props) {
 }
 
 function TradingCardContainer() {
+
   const [cards, updateCards] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("/cards.json")
-      .then((response) => response.json())
-      .then((data) => updateCards(data.cards));
-  }, []);
+    fetch('/cards.json')
+    .then((response) => response.json())
+    .then((data) => updateCards(data.cards))
+  }, [])
 
   const tradingCards = [];
 
@@ -31,8 +34,36 @@ function TradingCardContainer() {
     );
   }
 
-  return <div>{tradingCards}</div>;
+  return (
+    <div>{tradingCards}</div>
+  );
+
 }
+
+// function TradingCardContainer() {
+//   const [cards, updateCards] = React.useState([]);
+
+//   React.useEffect(() => {
+//     fetch("/cards.json")
+//       .then((response) => response.json())
+//       .then((data) => updateCards(data.cards));
+//   }, []);
+
+//   const tradingCards = [];
+
+//   for (const currentCard of cards) {
+//     tradingCards.push(
+//       <TradingCard
+//         key={currentCard.name}
+//         name={currentCard.name}
+//         skill={currentCard.skill}
+//         imgUrl={currentCard.imgUrl}
+//       />
+//     );
+//   }
+
+//   return <div>{tradingCards}</div>;
+// }
 
 
 

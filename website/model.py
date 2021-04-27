@@ -27,3 +27,16 @@ class Event(db.Model):
 
     show_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+    venue_id = db.Column(db.Integer, db.ForeignKey('venue.venue_id'), nullable=False)
+    pic_id = db.Column(db.Integer, db.ForeginKey('picture.pic_id'))
+    event_name = db.Column(db.String)
+    date = db.Column(db.DateTime)
+
+class Venue(db.Model):
+    """A Venue"""
+    #Add Whoosh? 
+    __tablename__= "venues"
+
+    venue_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    show_id = db.Column(db.Integer, db.ForeignKey('events.show_id'))
+

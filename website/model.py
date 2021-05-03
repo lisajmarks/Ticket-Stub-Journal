@@ -31,7 +31,7 @@ class Event(db.Model):
 
     event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     #user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
-    venue_id = db.Column(db.Integer, db.ForeignKey('venues.venue_id'), nullable=False)
+    venue_id = db.Column(db.Integer, db.ForeignKey('venues.venue_id'))
     # pic_id = db.Column(db.Integer, db.ForeginKey('pictures.pic_id'))
     event_name = db.Column(db.Text)
     date = db.Column(db.DateTime)
@@ -104,10 +104,32 @@ def generate_event_test_data():
     db.session.add(test_event)
     db.session.commit()
 
-# def create_user(email,password):
-#     user = User(email = email, password = password)
-#     db.session.add(user)
-#     db.session.commit()
+def generate_venue_test_data():
+    test_venue = Venue(venue_id='2', latitude = '37.782766928294', longitude = '-122.41017050455274', street_address = '982 Market St', city = 'San Francisco', state ='CA')
+    db.session.add(test_venue)
+    db.session.commit()
+
+def generate_memory_test_data():
+    user_id = User(user_id='3')
+    db.session.add(user_id)
+    db.session.commit()
+    event_id = Event(event_id='3')
+    db.session.add(event_id)
+    db.session.commit()
+    test_memory = Memory(memory_id='3', user_id='3', event_id='3', fav_song='Light It Up', memory='Dancing with my friends.', squad ='Daisy, Mario, Yoshi')
+    db.session.add(test_memory)
+    db.session.commit()
+
+def clear_tables():
+    db.create_all()
+    User.query.delete()
+    Event.query.delete()
+    Venue.query.delete()
+    Memory.query.delete()
+    UserEvent.query.delete()
+    Picture.query.delete()
+    db.session.commit()
+    
 
 
 def connect_to_db(flask_app, db_uri='postgresql:///tsj', echo=True):

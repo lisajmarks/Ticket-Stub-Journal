@@ -48,10 +48,10 @@ class Venue(db.Model):
     street_address = db.Column(db.Text)
     city = db.Column(db.Text)
     state = db.Column(db.Text)
-    description = db.Column(db.Text)
+    #description = db.Column(db.Text)
     
-    def __repr__(self):
-        return f'<location venue_id={self.loc_id} name={self.name}'
+    # def __repr__(self):
+    #     return f'<location venue_id={self.loc_id} name={self.name}'
 
 class Memory(db.Model): 
     """A Memory"""

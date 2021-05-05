@@ -67,6 +67,10 @@ def create_memory(memory_id, user_id, event_id, fav_song, memory, squad):
 
     return memory 
 
+def create_picture(pic_id, loc):
+    pic = Pictue(pic_id=pic_id, loc=loc)
+    db.session.add(pic)
+    db.session.commit()
 
 
 if __name__ == '__main__':

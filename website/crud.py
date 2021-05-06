@@ -68,9 +68,19 @@ def create_memory(memory_id, user_id, event_id, fav_song, memory, squad):
     return memory 
 
 def create_picture(pic_id, loc):
-    pic = Pictue(pic_id=pic_id, loc=loc)
+    pic = Picture(pic_id=pic_id, loc=loc)
     db.session.add(pic)
     db.session.commit()
+
+def get_user_by_email(email):
+    """Return a user by email."""
+
+    return User.query.filter(User.email == email).first()
+
+def get_user_by_id(user_id):
+    """Return a user by primary key."""
+
+    return User.query.get(user_id)
 
 
 # if __name__ == '__main__':

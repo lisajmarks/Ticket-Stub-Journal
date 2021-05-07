@@ -38,6 +38,16 @@ def events():
     """View user events"""
     return render_template('events.html')
 
+@app.route('/shows')
+def shows():
+    """View user shows"""
+    return render_template('shows.html')
+
+@app.route('/addshow')
+def add_show():
+    """Add show info"""
+    return render_template('addshow.html')
+
 @app.route('/users', methods=['POST'])
 def register_user():
     """Create a new user""" 

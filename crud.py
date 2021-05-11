@@ -96,13 +96,18 @@ def create_user_event(user_id, event_id, pic_id=""):
 
     return user_event
 
-def get_events_by_userid(user_id): 
+def get_memories_by_userid(user_id): 
     #TODO: finish this function 
     """Return a users event info by user id"""
     user = User.query.get(user_id)
-    print(user.query.memories.get(fav_song))
-    print(user.query.memories.get(memory))
 
+    print(user.memories[0].fav_song)
+    print(user.memories[0].memory)
+    print(user.memories[0].squad)
+    print(user.memories[0].event.event_name)
+    print(user.memories[0].pic.loc)
+    print(user.memories[0].event.venue.name)
+    return user.memories
 
 #TODO sqlalchemy join - results list (list of dictionaries)
 

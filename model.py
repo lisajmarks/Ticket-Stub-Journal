@@ -4,6 +4,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+from sqlalchemy.orm import backref
+
 
 db = SQLAlchemy()
 
@@ -34,11 +36,12 @@ class Event(db.Model):
     event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     # user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     venue_id = db.Column(db.Integer, db.ForeignKey('venues.venue_id'))
-    # pic_id = db.Column(db.Integer, db.ForeginKey('pictures.pic_id'))
+    # pic_id = db.Column(db.Integer, db.ForeignKey('pictures.pic_id'))
     event_name = db.Column(db.Text)
     date = db.Column(db.DateTime)
 
-
+    venue = db.relationship('Venue', backref='event')
+    # pic = db.relationship('Picture', backref='event')
 
 class Venue(db.Model):
     """A Venue"""
@@ -71,7 +74,8 @@ class Memory(db.Model):
     memory = db.Column(db.Text)
     squad = db.Column(db.Text)
 
-    event = db.relationship('Event', backref='event')
+    event = db.relationship('Event', backref='memory')
+    pic = db.relationship('Picture')
 
 # class UserEvent(db.Model):
 #     """A User's Event"""
@@ -95,6 +99,8 @@ class Picture(db.Model):
     # event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'), nullable=False)
     # user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'),nullablle=False)
     loc = db.Column(db.Text)
+
+    memory_pic = db.relationship('Memory', backref='picture')
 
 
 

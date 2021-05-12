@@ -1,9 +1,26 @@
 {% extends 'base.html' %}
 {% block body %}
+<!-- 
+    {% for memory in user.memories_list %}
+        <li>{{ memory }} </li>
+    {% endfor %} -->
 
-TEST
 
-{{user.memories}}
+    <ul>
+        {% for event_id in memories %}
+            <li> {{events[event_id].date}} 
+                {{ events[event_id].event_name }} 
+                {{ events[event_id].venue.name }}
+                <ul>
+                    {% for memory in memories[event_id] %}
+                        {{ memory.fav_song }} 
+                    {% endfor %}
+                </ul>
+            </li>
+        
+
+        {% endfor %}
+    </ul>
 <p>
     <!-- {% for event in events %}
     {{user.memories[0].event.event_name}}

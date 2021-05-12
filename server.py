@@ -39,14 +39,28 @@ def events():
     """View user events"""
     user_id = session.get("user_id")
     if not user_id: 
+        flash("Please log in")
         return redirect('/') #TODO add flash message please log in
     user = crud.get_user_by_id(user_id)
-    memories = []
-    for memory in user.memories: 
-        memories.append(memory)
+    
+    memories = {}
+    #keys event ids, values list of memories 
+    events = {} 
+    #event ids, events 
 
+    for memory in user.memories: 
+        event = memory.event
+        events[event.event_id] = event
+
+        if event.event_id in memories:
+            memories[memory.event_id].append(memory)
+        else: 
+            memories[memory.event_id] = [memory]
+    
+    print(memories)
+    print(events)
     # events = crud.get_memories_by_userid(user_id)
-    return render_template('events.html', user=user)
+    return render_template('events.html', user=user, memories=memories, events=events)
 
     #list keys are event id and values are - list users events - display inside template
     # memories associated with that event 
@@ -59,10 +73,6 @@ def shows():
     """View user shows"""
     return render_template('shows.html')
 
-@app.route('/addshow')
-def add_show():
-    """Add show info"""
-    return render_template('addshow.html')
 
 @app.route('/users', methods=['POST'])
 def register_user():

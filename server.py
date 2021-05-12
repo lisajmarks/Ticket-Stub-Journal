@@ -37,8 +37,22 @@ def map():
 @app.route('/events')
 def events():
     """View user events"""
-    events = crud.get_events_by_id(name, event_name, fav_song, memories, squad)
-    return render_template('events.html', events = events)
+    user_id = session.get("user_id")
+    if not user_id: 
+        return redirect('/') #TODO add flash message please log in
+    user = crud.get_user_by_id(user_id)
+    memories = []
+    for memory in user.memories: 
+        memories.append(memory)
+
+    # events = crud.get_memories_by_userid(user_id)
+    return render_template('events.html', user=user)
+
+    #list keys are event id and values are - list users events - display inside template
+    # memories associated with that event 
+    # build data structure 
+    # dictionary that connects event ID to memories 
+    # display various aspects of the memory 
 
 @app.route('/shows')
 def shows():
@@ -59,7 +73,7 @@ def register_user():
 
     user = crud.get_user_by_email(email)
     if user: 
-        flash("Oops - Cannot create an account with that email. Try again.")
+        flash("Cannot create an account with that email. Try again.")
     else: 
         crud.create_user(email, password)
         flash("Account created! Log in and join the party!")
@@ -92,7 +106,7 @@ def process_login():
         session["user_id"] = user.user_id
         flash(f"Welcome back, {user.email}!")
     
-    return redirect("/")
+    return redirect("/events")
 
 @app.route("/events/create", methods=["POST"])
 def create_event_backend():
@@ -108,7 +122,7 @@ def create_event_backend():
     v = crud.create_venue(venue_name)
     e = crud.create_event(v.venue_id, event_name, date)
     m = crud.create_memory(user_id, e.event_id, fav_song, memories, squad)
-    user_event = crud.create_user_event(user_id, e.event_id)
+    # user_event = crud.create_user_event(user_id, e.event_id)
 
     return redirect("/events")
 

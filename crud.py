@@ -12,7 +12,6 @@ def clear_tables():
     User.query.delete()
     Event.query.delete()
     Venue.query.delete()
-    UserEvent.query.delete()
     Picture.query.delete()
     db.session.commit()
 
@@ -35,10 +34,12 @@ def create_user(email, password):
 
 #     return venue
 
-def create_venue(name, street_address='', city='', state='', latitude=0, longitude=0):
+def create_venue(name, street_address='', city='', 
+                state='', latitude=0, longitude=0):
     """Create and return a venue"""
     
-    venue = Venue(name=name, latitude=latitude, longitude=longitude, street_address=street_address, city=city, state=state)
+    venue = Venue(name=name, latitude=latitude, longitude=longitude, 
+                street_address=street_address, city=city, state=state)
     db.session.add(venue)
     db.session.commit()
 
@@ -89,27 +90,24 @@ def get_user_by_id(user_id):
 
     return User.query.get(user_id)
 
-def create_user_event(user_id, event_id, pic_id=""):
-    user_event = UserEvent(user_id=user_id, event_id=event_id, pic_id=pic_id)
-    db.session.add(user_event)
-    db.session.commit()
+# def create_user_event(user_id, event_id, pic_id=""):
+#     user_event = UserEvent(user_id=user_id, event_id=event_id, pic_id=pic_id)
+#     db.session.add(user_event)
+#     db.session.commit()
 
-    return user_event
+#     return user_event
 
 def get_memories_by_userid(user_id): 
-    #TODO: finish this function 
     """Return a users event info by user id"""
     user = User.query.get(user_id)
 
-    print(user.memories[0].fav_song)
-    print(user.memories[0].memory)
-    print(user.memories[0].squad)
-    print(user.memories[0].event.event_name)
-    print(user.memories[0].pic.loc)
-    print(user.memories[0].event.venue.name)
+    # user.memories[0].fav_song
+    # user.memories[0].memory
+    # user.memories[0].squad
+    # user.memories[0].event.event_name
+    # user.memories[0].pic.loc
+    # user.memories[0].event.venue.name
     return user.memories
-
-#TODO sqlalchemy join - results list (list of dictionaries)
 
 
 if __name__ == '__main__':

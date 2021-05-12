@@ -65,10 +65,10 @@ connect_to_db(app)
 db.create_all()
 # clear_tables()
 
-generate_user_test_data()
-generate_venue_test_data()
-generate_event_test_data()
-generate_memory_test_data()
+# generate_user_test_data()
+# generate_venue_test_data()
+# generate_event_test_data()
+# generate_memory_test_data()
 
 
 # generate_user_test_data()

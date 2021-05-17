@@ -33,14 +33,13 @@ def map():
     """View user event map"""
     return render_template('map.html')
 
-#TODO: fix this route so it displays userevents
 @app.route('/events')
 def events():
     """View user events"""
     user_id = session.get("user_id")
     if not user_id: 
         flash("Please log in")
-        return redirect('/') #TODO add flash message please log in
+        return redirect('/') 
     user = crud.get_user_by_id(user_id)
     
     memories = {}
@@ -62,35 +61,42 @@ def events():
     # events = crud.get_memories_by_userid(user_id)
     return render_template('events.html', user=user, memories=memories, events=events)
 
-    #list keys are event id and values are - list users events - display inside template
-    # memories associated with that event 
-    # build data structure 
-    # dictionary that connects event ID to memories 
-    # display various aspects of the memory 
-
-@app.route('/shows')
-def shows():
-    """View user shows"""
-    return render_template('shows.html')
+# @app.route('/shows')
+# def shows():
+#     """View user shows"""
+#     return render_template('shows.html')
 
 
-@app.route('/users', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def register_user():
+#TODO: finish updating create_user function
     """Create a new user""" 
 
     email = request.form.get('email')
+    username = request.form.get('username')
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
     password = request.form.get('password')
+    bio = request.form.get('bio')
+    city = request.form.get('city')
 
     user = crud.get_user_by_email(email)
     if user: 
-        flash("Cannot create an account with that email. Try again.")
+        flash("There's already another user with that email! Try again.")
     else: 
         crud.create_user(email, password)
         flash("Account created! Log in and join the party!")
 
     return redirect('/')
 
-@app.route("/users/<user_id>")
+
+@app.route("/register")
+def register():
+    """Display Registration Page""" 
+
+    return render_template("/register.html")
+
+@app.route("/user/<user_id>")
 def show_user(user_id): 
     """Show details on a particular view."""
 
@@ -105,18 +111,19 @@ def process_login():
 
     user = crud.get_user_by_email(email)
     if not user or user.password != password: 
-        flash("Whoa - your email or password is incorrect!")
-        print("{user.email}")
-        print("{user.password}")
-        print(email)
-        print(password)
+        flash("Hey you're not on the guestlist. Register to join the party!")
     else: 
         #log in user by storing the user's email in session 
         session["user_email"] = user.email 
         session["user_id"] = user.user_id
         flash(f"Welcome back, {user.email}!")
     
-    return redirect("/events")
+    return redirect("/home")
+
+@app.route("/home")
+def auth():
+    """Return Homepage When User Is Authorized"""
+    return render_template("/homepage-auth.html")
 
 @app.route("/events/create", methods=["POST"])
 def create_event_backend():

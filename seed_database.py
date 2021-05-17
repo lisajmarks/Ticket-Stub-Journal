@@ -18,7 +18,8 @@ def generate_user_test_data():
         test_pic= Picture(pic_id=i, loc=f'test{i}')
         db.session.add(test_pic)
         db.session.commit()
-        test_user= User(profile_pic=i, email=f'test{i}@test.com', name='test', password='test', join_date='1000-10-10', bio='test', city='test')
+        test_user= User(profile_pic=i, email=f'test{i}@test.com', username=f'test{i}', 
+                        fname='ftest', lname='ltest', password='test', join_date='1000-10-10', bio='test', city='test')
         db.session.add(test_user)
         db.session.commit()
 

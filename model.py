@@ -15,6 +15,9 @@ class User(db.Model):
     __tablename__ = "users"
     #TODO: Add nullables#
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    username = db.Column(db.Text, unique=True)
+    first_name = db.Column(db.Text)
+    last_name = db.Column(db.Text)
     profile_pic = db.Column(db.Integer, db.ForeignKey('pictures.pic_id'))
     email = db.Column(db.Text, unique=True)
     name = db.Column(db.Text)

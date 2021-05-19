@@ -29,7 +29,7 @@ class User(db.Model):
     memories = db.relationship('Memory', backref='user') #create user attribute
 
     def __repr__(self):
-        return f'<User user_id={self.user_id} email={self.email}>'
+        return f'<User user_id={self.user_id} email={self.email} >'
 
 class Event(db.Model):
     """An Event."""
@@ -50,7 +50,6 @@ class Venue(db.Model):
     """A Venue"""
     #Add Whoosh? 
     __tablename__= "venues"
-
     venue_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     #event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'))
     latitude = db.Column(db.Float)

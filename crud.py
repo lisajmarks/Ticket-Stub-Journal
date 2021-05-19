@@ -15,10 +15,11 @@ def clear_tables():
     Picture.query.delete()
     db.session.commit()
 
-def create_user(email, password):
+def create_user(email, password, username, first_name, last_name, bio, city ):
     """Create and return a new user."""
 
-    user = User(email=email, password=password)
+    user = User(email=email, password=password, username=username, 
+                first_name=first_name, last_name=last_name, bio=bio, city=city)
 
     db.session.add(user)
     db.session.commit()
@@ -89,6 +90,10 @@ def get_user_by_id(user_id):
     """Return a user by primary key."""
 
     return User.query.get(user_id)
+
+def get_user_by_username(username):
+    """Return a user by username""" 
+    return User.query.filter(User.username == username).first()
 
 # def create_user_event(user_id, event_id, pic_id=""):
 #     user_event = UserEvent(user_id=user_id, event_id=event_id, pic_id=pic_id)

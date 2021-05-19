@@ -69,22 +69,27 @@ def events():
 
 @app.route('/register', methods=['POST'])
 def register_user():
-#TODO: finish updating create_user function
     """Create a new user""" 
 
     email = request.form.get('email')
     username = request.form.get('username')
-    fname = request.form.get('fname')
-    lname = request.form.get('lname')
+    first_name = request.form.get('fname')
+    last_name = request.form.get('lname')
     password = request.form.get('password')
     bio = request.form.get('bio')
     city = request.form.get('city')
 
     user = crud.get_user_by_email(email)
+    uname = crud.get_user_by_username(username)
+
     if user: 
         flash("There's already another user with that email! Try again.")
+        return redirect('/register')
+    elif uname: 
+        flash("Someone has claimed that username! Try another.")
+        return redirect('/register')
     else: 
-        crud.create_user(email, password)
+        crud.create_user(email, password, username, first_name, last_name, bio, city,)
         flash("Account created! Log in and join the party!")
 
     return redirect('/')

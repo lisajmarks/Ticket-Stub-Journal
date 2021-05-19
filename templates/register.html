@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} Ticket Stub Journal{% endblock %}
+{% block body %}
+
+<h2>Create an Account</h2>
+<form action="/register" method="POST">
+  <p>
+    Email <input type="text" name="email">
+    <br> 
+    <br>
+    Username <input type="text" name="username">
+    <br>
+    <br>
+    First Name <input type="text" name="fname">
+    <br>
+    <br>
+    Last Name <input type="text" name="lname">
+    <br>
+    <br>
+    Password <input type="password" name="password">
+    <br>
+    <br>
+    Bio <input type="text" name="password">
+    <br>
+    <br>
+    City <input type="text" name="password">
+    <br>
+    <br>
+    <input type="submit">
+  </p>
+</form>
+{% endblock %}

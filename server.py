@@ -2,6 +2,8 @@ from flask import (Flask, render_template, request, flash, session, redirect)
 from model import connect_to_db
 import crud
 from jinja2 import StrictUndefined
+import cloudinary.uploader
+import os
 # from website import create_app
 
 
@@ -32,6 +34,20 @@ def profile():
 def map():
     """View user event map"""
     return render_template('map.html')
+
+@app.route('/form')
+def form():
+    """View form page"""
+    return render_template('form.html')
+
+@app.route('/form', method=["POST"])
+def user_form():
+    """Process form page"""
+
+    my_file = request.files['my-file']
+
+    return redirect('/form')
+
 
 @app.route('/events')
 def events():

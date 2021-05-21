@@ -5,7 +5,11 @@
     <title>JavaScript File Upload</title>
 </head>
 <body>
-      <button id="upload_widget">Upload files</button>
+<form action="/post-form-data" method="post" enctype="multipart/form-data">
+  <input type="file" name="my-file">
+  <input type ="submit">
+      <!-- <button id="upload_widget">Upload files</button> -->
+</form>
 </body>
 </html>
 

@@ -1,4 +1,4 @@
 *.pyc
 secrets.sh
 .DS_Store
-secrets.py
+secrets*

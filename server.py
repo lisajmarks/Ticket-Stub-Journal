@@ -1,22 +1,14 @@
 from flask import (Flask, render_template, request, flash, session, redirect)
 from model import connect_to_db
+from secrets import CLOUDINARY_KEY, CLOUDINARY_SECRET, FLASK_SECRET
 import crud
 from jinja2 import StrictUndefined
 import cloudinary.uploader
-import os
 # from website import create_app
-
-CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
-CLOUDINARY_KEY_SECRET = os.environ['CLOUDINARY_SECRET']
-
-app = Flask(__name__)
-app.secret_key = "dev"
-app.jinja_env.undefined = StrictUndefined
-
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'k23lkjfwa-9adkljfg' #secures cookies and sessions data
+    app.config['SECRET_KEY'] = FLASK_SECRET #secures cookies and sessions data
 
     return app 
 app = create_app()
@@ -48,7 +40,9 @@ def user_form():
 
     my_file = request.files['my-file']
     result = cloudinary.uploader.upload(my_file, 
-    api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_KEY_SECRET, cloud_name="ticketstubjournal")
+    api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_SECRET, cloud_name="ticketstubjournal")
+
+    crud.add_picture(result['secure_url'])
 
     return redirect('/form')
 

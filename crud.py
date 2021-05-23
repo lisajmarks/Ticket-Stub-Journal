@@ -114,9 +114,11 @@ def get_memories_by_userid(user_id):
     # user.memories[0].event.venue.name
     return user.memories
 
-def add_picture(img_url):
+def add_picture(loc):
     """Add an image url to db"""
-    
+    pic = Picture(loc=loc)
+    db.session.add(pic)
+    db.session.commit()
 
 if __name__ == '__main__':
     from server import app

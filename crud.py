@@ -48,9 +48,10 @@ def create_venue(name, street_address='', city='',
 
 
 
-def create_event(venue_id, event_name, date):
+def create_event(venue_id, event_name, headliner, date):
     """Create and return a new event"""
-    event = Event(venue_id=venue_id, event_name=event_name, date=date)
+    event = Event(venue_id=venue_id, event_name=event_name, 
+                headliner=headliner, date=date)
 
     db.session.add(event)
     db.session.commit()

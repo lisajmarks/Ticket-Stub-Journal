@@ -9,12 +9,20 @@
     <ul>
         {% for event_id in memories %}
             <li> {{events[event_id].date}} 
-                {{ events[event_id].event_name }} 
-                {{ events[event_id].venue.name }}
-                <ul>
-                    {% for memory in memories[event_id] %}
-                        {{ memory.fav_song }} 
-                    {% endfor %}
+                <br> 
+                Event Name: {{ events[event_id].event_name }} 
+                <br>
+                Headliner: {{ events[event_id].headliner }}
+                <br>
+                Venue: {{ events[event_id].venue.name }}
+                {% for memory in memories[event_id] %}
+                    <br>
+                    Favorite Song: {{ memory.fav_song }} 
+                    <br>
+                    Memory: {{ memory.memory }}
+                    <br>
+                    Party Squad: {{ memory.squad }}
+                {% endfor %}
                 </ul>
             </li>
         

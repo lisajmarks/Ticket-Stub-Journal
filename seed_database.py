@@ -32,7 +32,8 @@ def generate_event_test_data():
     venue_id= Venue(venue_id='1')
     # db.session.add(venue_id)
     # db.session.commit()
-    test_event= Event(event_id='1',venue_id='1', event_name='OSL', date='1001-11-11')
+    test_event= Event(event_id='1',venue_id='1', 
+    event_name='OSL', headliner='headliner', date='1001-11-11')
     db.session.add(test_event)
     db.session.commit()
 

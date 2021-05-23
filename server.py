@@ -108,7 +108,7 @@ def register_user():
         crud.create_user(email, password, username, first_name, last_name, bio, city,)
         flash("Account created! Log in and join the party!")
 
-    return redirect('/')
+    return redirect('/home')
 
 
 @app.route("/register")
@@ -153,6 +153,7 @@ def create_event_backend():
     """Create User Event"""
     event_name = request.form.get("event_name")
     date = request.form.get("date")
+    headliner = request.form.get("headliner")
     venue_name = request.form.get("venue")
     fav_song = request.form.get("fav_song")
     memories = request.form.get("memory")
@@ -164,7 +165,7 @@ def create_event_backend():
         date = date.today()
 
     v = crud.create_venue(venue_name)
-    e = crud.create_event(v.venue_id, event_name, date)
+    e = crud.create_event(v.venue_id, event_name, headliner, date)
     m = crud.create_memory(user_id, e.event_id, fav_song, memories, squad)
     # user_event = crud.create_user_event(user_id, e.event_id)
 

@@ -22,7 +22,7 @@ class User(db.Model):
     email = db.Column(db.Text, unique=True)
     name = db.Column(db.Text)
     password = db.Column(db.Text)
-    join_date = db.Column(db.DateTime)
+    join_date = db.Column(db.Date)
     bio = db.Column(db.Text)
     city = db.Column(db.Text)
 
@@ -41,7 +41,8 @@ class Event(db.Model):
     venue_id = db.Column(db.Integer, db.ForeignKey('venues.venue_id'))
     # pic_id = db.Column(db.Integer, db.ForeignKey('pictures.pic_id'))
     event_name = db.Column(db.Text)
-    date = db.Column(db.DateTime)
+    headliner = db.Column(db.Text)
+    date = db.Column(db.Date)
 
     venue = db.relationship('Venue', backref='event')
     # pic = db.relationship('Picture', backref='event')

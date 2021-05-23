@@ -1,9 +1,11 @@
+from cloudinary.utils import now
 from flask import (Flask, render_template, request, flash, session, redirect)
 from model import connect_to_db
 from secrets import CLOUDINARY_KEY, CLOUDINARY_SECRET, FLASK_SECRET
 import crud
 from jinja2 import StrictUndefined
 import cloudinary.uploader
+import datetime
 # from website import create_app
 
 def create_app():
@@ -29,22 +31,22 @@ def profile():
 #     """View user event map"""
 #     return render_template('map.html')
 
-@app.route('/form')
-def form():
-    """View form page"""
-    return render_template('form.html')
+# @app.route('/form')
+# def form():
+#     """View form page"""
+#     return render_template('form.html')
 
-@app.route('/post-form-data', methods=["POST"])
-def user_form():
-    """Process form page"""
+# @app.route('/post-form-data', methods=["POST"])
+# def user_form():
+#     """Process form page"""
 
-    my_file = request.files['my-file']
-    result = cloudinary.uploader.upload(my_file, 
-    api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_SECRET, cloud_name="ticketstubjournal")
+#     my_file = request.files['my-file']
+#     result = cloudinary.uploader.upload(my_file, 
+#     api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_SECRET, cloud_name="ticketstubjournal")
 
-    crud.add_picture(result['secure_url'])
+#     crud.add_picture(result['secure_url'])
 
-    return redirect('/form')
+#     return redirect('/form')
 
 
 @app.route('/events')
@@ -131,13 +133,15 @@ def process_login():
     user = crud.get_user_by_email(email)
     if not user or user.password != password: 
         flash("Hey you're not on the guestlist. Register to join the party!")
+        return redirect("/")
     else: 
         #log in user by storing the user's email in session 
         session["user_email"] = user.email 
         session["user_id"] = user.user_id
         flash(f"Welcome back, {user.email}!")
-    
     return redirect("/home")
+    
+    
 
 @app.route("/home")
 def auth():
@@ -155,10 +159,21 @@ def create_event_backend():
     squad = request.form.get("squad")
     user_id = session["user_id"]
 
+    #TODO: Fix so empty date is accepted
+    if (date == False):
+        date = date.today()
+
     v = crud.create_venue(venue_name)
     e = crud.create_event(v.venue_id, event_name, date)
     m = crud.create_memory(user_id, e.event_id, fav_song, memories, squad)
     # user_event = crud.create_user_event(user_id, e.event_id)
+
+    my_file = request.files['my-file']
+    if my_file:
+        result = cloudinary.uploader.upload(my_file, 
+        api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_SECRET, cloud_name="ticketstubjournal")
+
+        crud.add_picture(result['secure_url'])
 
     return redirect("/events")
 

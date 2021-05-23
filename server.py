@@ -6,6 +6,8 @@ import cloudinary.uploader
 import os
 # from website import create_app
 
+CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
+CLOUDINARY_KEY_SECRET = os.environ['CLOUDINARY_SECRET']
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -30,21 +32,23 @@ def profile():
     """View user profile"""
     return render_template('profile.html')
 
-@app.route('/map')
-def map():
-    """View user event map"""
-    return render_template('map.html')
+# @app.route('/map')
+# def map():
+#     """View user event map"""
+#     return render_template('map.html')
 
 @app.route('/form')
 def form():
     """View form page"""
     return render_template('form.html')
 
-@app.route('/form', method=["POST"])
+@app.route('/post-form-data', methods=["POST"])
 def user_form():
     """Process form page"""
 
     my_file = request.files['my-file']
+    result = cloudinary.uploader.upload(my_file, 
+    api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_KEY_SECRET, cloud_name="ticketstubjournal")
 
     return redirect('/form')
 

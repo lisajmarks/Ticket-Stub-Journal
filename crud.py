@@ -120,6 +120,9 @@ def add_picture(loc):
     pic = Picture(loc=loc)
     db.session.add(pic)
     db.session.commit()
+    return pic
+
+
 
 if __name__ == '__main__':
     from server import app

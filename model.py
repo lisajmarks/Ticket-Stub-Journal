@@ -80,6 +80,10 @@ class Memory(db.Model):
     event = db.relationship('Event', backref='memory')
     pic = db.relationship('Picture')
 
+    def set_picture(self, pic):
+        self.pic = pic
+        db.session.add(self)
+        db.session.commit()
 # class UserEvent(db.Model):
 #     """A User's Event"""
 

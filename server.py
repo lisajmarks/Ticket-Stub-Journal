@@ -57,9 +57,10 @@ def events():
         flash("Please log in")
         return redirect('/') 
     user = crud.get_user_by_id(user_id)
-    
+
+
     memories = {}
-    #keys event ids, values list of memories 
+    #keys event ids, values list of memories
     events = {} 
     #event ids, events 
 
@@ -72,10 +73,13 @@ def events():
         else: 
             memories[memory.event_id] = [memory]
     
-    print(memories)
-    print(events)
+
+
+    # print(memories)
+    # print(events)
     # events = crud.get_memories_by_userid(user_id)
-    return render_template('events.html', user=user, memories=memories, events=events)
+    return render_template('events.html', user=user, 
+    memories=memories, events=events)
 
 # @app.route('/shows')
 # def shows():
@@ -174,7 +178,8 @@ def create_event_backend():
         result = cloudinary.uploader.upload(my_file, 
         api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_SECRET, cloud_name="ticketstubjournal")
 
-        crud.add_picture(result['secure_url'])
+        pic = crud.add_picture(result['secure_url'])
+        m.set_picture(pic)
 
     return redirect("/events")
 

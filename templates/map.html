@@ -1,2 +1,30 @@
 {% extends 'base.html' %}
+{% block head %}
+
+
+  <script
+    async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwx11RUEtpBZVo1XBAeSPaXIp9CN6S3AQ&callback=initMap">
+  </script>
+
+<div id="map">
+</div>
+
+<style>
+  #map {
+    height: 100%;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+
+<script src="/static/js/maps.js">
+</script>
+
+  <h1>TEST</h1>
+{% endblock %}
+
 

@@ -1,9 +1,10 @@
 from cloudinary.utils import now
-from flask import (Flask, render_template, request, flash, session, redirect)
+from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import connect_to_db
 from secrets import CLOUDINARY_KEY, CLOUDINARY_SECRET, FLASK_SECRET
 import crud
 from jinja2 import StrictUndefined
+from geocoding import get_coordinates
 import cloudinary.uploader
 import datetime
 # from website import create_app
@@ -26,10 +27,16 @@ def profile():
     """View user profile"""
     return render_template('profile.html')
 
-# @app.route('/map')
-# def map():
-#     """View user event map"""
-#     return render_template('map.html')
+@app.route('/map')
+def map():
+    """View user event map"""
+    return render_template('map.html')
+
+@app.route('/mapevents')
+def event_markers():
+    marker = [{'lat':'47.62063283279521', 'lng': '-122.34925057978872', 'name': 'Space Needle'}]
+    return jsonify(marker)
+#TODO: Front end scoop up data - unjsonify > make markers 
 
 # @app.route('/form')
 # def form():
@@ -47,7 +54,6 @@ def profile():
 #     crud.add_picture(result['secure_url'])
 
 #     return redirect('/form')
-
 
 @app.route('/events')
 def events():

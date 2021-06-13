@@ -35,12 +35,11 @@ def create_user(email, password, username, first_name, last_name, bio, city ):
 
 #     return venue
 
-def create_venue(name, street_address='', city='', 
-                state='', latitude=0, longitude=0):
+def create_venue(name, address='', latitude=0, longitude=0):
     """Create and return a venue"""
     
     venue = Venue(name=name, latitude=latitude, longitude=longitude, 
-                street_address=street_address, city=city, state=state)
+                address=address)
     db.session.add(venue)
     db.session.commit()
 

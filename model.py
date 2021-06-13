@@ -55,9 +55,9 @@ class Venue(db.Model):
     #event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'))
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
-    street_address = db.Column(db.Text)
-    city = db.Column(db.Text)
-    state = db.Column(db.Text)
+    address = db.Column(db.Text)
+    # city = db.Column(db.Text)
+    # state = db.Column(db.Text)
     name = db.Column(db.Text)
     
     # def __repr__(self):

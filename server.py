@@ -1,12 +1,13 @@
 from cloudinary.utils import now
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import connect_to_db
-from secrets import CLOUDINARY_KEY, CLOUDINARY_SECRET, FLASK_SECRET
+from secrets import CLOUDINARY_KEY, CLOUDINARY_SECRET, FLASK_SECRET, G_MAPS_API_KEY
 import crud
 from jinja2 import StrictUndefined
 from geocoding import get_coordinates
 import cloudinary.uploader
-import datetime
+import googlemaps
+from datetime import datetime 
 
 def create_app():
     app = Flask(__name__)
@@ -169,12 +170,21 @@ def create_event_backend():
     memories = request.form.get("memory")
     squad = request.form.get("squad")
     user_id = session["user_id"]
+    address = request.form.get("address")
 
     #TODO: Fix so empty date is accepted
     if (date == False):
         date = date.today()
 
-    v = crud.create_venue(venue_name)
+    gmaps = googlemaps.Client(key=G_MAPS_API_KEY)
+    # Geocoding an address
+    geocode_result = gmaps.geocode(address)
+
+    lat = geocode_result[0]["geometry"]["location"].get("lat")
+    lng = geocode_result[0]["geometry"]["location"].get("lng")
+
+
+    v = crud.create_venue(venue_name, address, lat, lng)
     e = crud.create_event(v.venue_id, event_name, headliner, date)
     m = crud.create_memory(user_id, e.event_id, fav_song, memories, squad)
     # user_event = crud.create_user_event(user_id, e.event_id)

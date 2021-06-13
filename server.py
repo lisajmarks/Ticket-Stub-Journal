@@ -7,7 +7,6 @@ from jinja2 import StrictUndefined
 from geocoding import get_coordinates
 import cloudinary.uploader
 import datetime
-# from website import create_app
 
 def create_app():
     app = Flask(__name__)
@@ -36,6 +35,7 @@ def map():
 def event_markers():
     marker = [{'lat':'47.62063283279521', 'lng': '-122.34925057978872', 'name': 'Space Needle'}]
     return jsonify(marker)
+    
 #TODO: Front end scoop up data - unjsonify > make markers 
 
 # @app.route('/form')

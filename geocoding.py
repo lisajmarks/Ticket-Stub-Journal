@@ -1,7 +1,8 @@
+from secrets import G_MAPS_API_KEY
 import requests
 
 # key = "AIzaSyDwx11RUEtpBZVo1XBAeSPaXIp9CN6S3AQ"
-key = "G_MAPS_API_SECRET"
+key = G_MAPS_API_KEY
 url = "https://maps.googleapis.com/maps/api/geocode/json"
 
 def get_coordinates(address):

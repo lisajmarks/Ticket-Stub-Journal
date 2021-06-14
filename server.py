@@ -22,6 +22,11 @@ def homepage():
     """View homepage"""
     return render_template('homepage.html')
 
+@app.route("/home")
+def auth():
+    """Return Authorized Page"""
+    return render_template("/homepage-auth.html")
+
 @app.route('/profile')
 def profile():
     """View user profile"""
@@ -31,13 +36,6 @@ def profile():
 def map():
     """View user event map"""
     return render_template('map.html')
-
-@app.route('/mapevents')
-def event_markers():
-    marker = [{'lat':'47.62063283279521', 'lng': '-122.34925057978872', 'name': 'Space Needle'}]
-    return jsonify(marker)
-    
-#TODO: Front end scoop up data - unjsonify > make markers 
 
 # @app.route('/form')
 # def form():
@@ -152,12 +150,6 @@ def process_login():
         flash(f"Welcome back, {user.email}!")
     return redirect("/home")
     
-    
-
-@app.route("/home")
-def auth():
-    """Return Homepage When User Is Authorized"""
-    return render_template("/homepage-auth.html")
 
 @app.route("/events/create", methods=["POST"])
 def create_event_backend():
@@ -183,7 +175,6 @@ def create_event_backend():
     lat = geocode_result[0]["geometry"]["location"].get("lat")
     lng = geocode_result[0]["geometry"]["location"].get("lng")
 
-
     v = crud.create_venue(venue_name, address, lat, lng)
     e = crud.create_event(v.venue_id, event_name, headliner, date)
     m = crud.create_memory(user_id, e.event_id, fav_song, memories, squad)
@@ -198,6 +189,26 @@ def create_event_backend():
         m.set_picture(pic)
 
     return redirect("/events")
+
+@app.route('/mapevents')
+def event_markers():
+    """get markers for user events"""
+    user_id = session.get("user_id")
+    if not user_id: 
+        flash("Please log in")
+        return redirect('/') 
+    markers = []
+    memories = crud.get_memories_by_userid(user_id)
+    for memory in memories:
+        if memory.event.venue.latitude and memory.event.venue.latitude:
+            markers.append({
+                'name':memory.event.venue.name,
+                'lng': memory.event.venue.longitude,
+                'lat': memory.event.venue.latitude,
+            })
+
+    # marker = [{'lat':'47.62063283279521', 'lng': '-122.34925057978872', 'name': 'Space Needle'}]
+    return jsonify(markers)
 
 @app.route("/events/create")
 def create_event_page():

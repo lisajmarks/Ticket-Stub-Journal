@@ -201,11 +201,18 @@ def event_markers():
     memories = crud.get_memories_by_userid(user_id)
     for memory in memories:
         if memory.event.venue.latitude and memory.event.venue.latitude:
-            markers.append({
-                'name':memory.event.venue.name,
+            markerInfo = {
+                'name':memory.event.event_name,
+                'venue_name': memory.event.venue.name,
                 'lng': memory.event.venue.longitude,
                 'lat': memory.event.venue.latitude,
-            })
+                'date': memory.event.date
+            }
+
+            if (memory.pic):
+                markerInfo['pic_url'] = memory.pic.loc
+
+            markers.append(markerInfo)
 
     # marker = [{'lat':'47.62063283279521', 'lng': '-122.34925057978872', 'name': 'Space Needle'}]
     return jsonify(markers)

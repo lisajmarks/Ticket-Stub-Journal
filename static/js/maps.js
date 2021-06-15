@@ -31,9 +31,6 @@ async function initMap() {
 		`<h3 id="firstHeading" class="firstHeading">${m.name}</h3>`+
 		'<p><div id="bodyContent">'+ `<div style="float:left; width:20%;"><img src="${m.pic_url}" width="120" height="80"/></div></p>` + 
 		`<p> <div id = "picture"> <div style="float:left; width:100%; margin-top: -100px;">${m.venue_name}</p>` +
-		// '<p>Attribution: Googleplex, <a href="http://en.wikipedia.org/wiki/Googleplex">'+
-		// 'http://en.wikipedia.org/wiki/Googleplex</a> '+
-		// '.</p></div>'+
 		'</div>'+
 		'</div>';
 

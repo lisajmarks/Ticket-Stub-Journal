@@ -2,31 +2,38 @@
 {% block title %} Ticket Stub Journal{% endblock %}
 {% block body %}
 
-<h2>Create an Account</h2>
-<form action="/register" method="POST">
-  <p>
-    Email <input type="text" name="email">
-    <br> 
-    <br>
-    Username <input type="text" name="username">
-    <br>
-    <br>
-    First Name <input type="text" name="fname">
-    <br>
-    <br>
-    Last Name <input type="text" name="lname">
-    <br>
-    <br>
-    Password <input type="password" name="password">
-    <br>
-    <br>
-    Bio <input type="text" name="password">
-    <br>
-    <br>
-    City <input type="text" name="password">
-    <br>
-    <br>
-    <input type="submit">
-  </p>
-</form>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" 
+rel="stylesheet"
+integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" 
+crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"> -->
+<link rel="stylesheet" type="text/css" href="static/css/homepage.css">
+
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div class="login-dark">
+        <form action="/register" method="POST">
+            <h2 class="sr-only">Registration</h2>
+            <div class="site-name"><h1>Registration</h1> Never Forget the Good Times</div>
+            <p></p>
+            <div class="form-group"><input class="form-control" type="text" name="email" placeholder="Email"></div>
+            <div class="form-group"><input class="form-control" type="text" name="username" placeholder="Username"></div>
+            <div class="form-group"><input class="form-control" type="text" name="fname" placeholder="First Name"></div>
+            <div class="form-group"><input class="form-control" type="text" name="lname" placeholder="Last Name"></div>
+            <div class="form-group"><input class="form-control" type="text" name="password" placeholder="Password"></div>
+            <div class="form-group"><input class="form-control" type="text" name="bio" placeholder="Bio - What's your story?"></div>
+            <div class="form-group"><input class="form-control" type="text" name="password" placeholder="City"></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
+    </div>
+   
+</body>
+
+</html>
 {% endblock %}

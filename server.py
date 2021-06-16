@@ -106,18 +106,21 @@ def register_user():
 
     user = crud.get_user_by_email(email)
     uname = crud.get_user_by_username(username)
-
+    print(user)
     if user: 
+        print("test1")
         flash("There's already another user with that email! Try again.")
         return redirect('/register')
     elif uname: 
+        print("test2")
         flash("Someone has claimed that username! Try another.")
         return redirect('/register')
     else: 
+        print("test3")
         crud.create_user(email, password, username, first_name, last_name, bio, city,)
         flash("Account created! Log in and join the party!")
 
-    return redirect('/home')
+    return redirect('/')
 
 
 @app.route("/register")

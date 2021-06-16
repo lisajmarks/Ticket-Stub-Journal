@@ -2,3 +2,9 @@
 custom colors 
 font  */
 
+.hompage {
+    height:1000px;
+    background-image: url('https://coverr.co/videos/cheering-crowd-V9QvvMj7id');
+    background-size:cover;
+    position:relative;
+}

@@ -4,8 +4,42 @@
     {% for memory in user.memories_list %}
         <li>{{ memory }} </li>
     {% endfor %} -->
+{% for event_id in memories %}
 
+<!-- Card -->
+<div class="card" style="width: 30rem";>
 
+        <!-- Card image -->
+        <img class="card-img-top" src="{{ memories[event_id][0].pic.loc }}" alt="Card image cap">
+        <!-- Card content -->
+        <div class="card-body">
+  
+        <!-- Title -->
+        <h4 class="card-title"><a>{{events[event_id].date}} {{ events[event_id].event_name }} </a></h4>    
+        
+        <!-- Text -->
+        <p class="card-text">
+            <br>
+            Headliners: {{ events[event_id].headliner }}
+            <br>
+            Venue: {{ events[event_id].venue.name }}
+            <br>
+            Favorite Song: {{ memories[event_id][0].fav_song }} 
+            <br>
+            Party Squad: {{ memories[event_id][0].squad }}
+            <br>
+            Memory: {{ memories[event_id][0].memory }}
+            <br>
+        </p>
+  
+    </div>
+  
+</div>
+<!-- Card -->
+        <br>
+
+{% endfor %}
+<!-- 
     <ul>
         {% for event_id in memories %}
             <li> {{events[event_id].date}} 
@@ -29,7 +63,7 @@
             </li>
 
         {% endfor %}
-    </ul>
+    </ul> -->
 <p>
     <!-- {% for event in events %}
     {{user.memories[0].event.event_name}}
@@ -41,4 +75,3 @@
     {% endfor%} -->
 </p>
 {% endblock %}
-

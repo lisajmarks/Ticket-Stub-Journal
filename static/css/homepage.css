@@ -1,8 +1,10 @@
 .login-dark {
-    height:1000px;
+    min-height:100%;
+    background-position: 0 0;
+    background-repeat: no-repeat;
     background-image: url('/static/img/TSJ.png');
     background-size:cover;
-    position:relative;
+    /* position:relative; */
   }
   
   .login-dark form {

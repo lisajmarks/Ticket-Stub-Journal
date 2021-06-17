@@ -2,9 +2,42 @@
 custom colors 
 font  */
 
-.hompage {
-    height:1000px;
+/* .login-dark {
+    min-height: 100%;
+    background-position: 0 0;
+    background-repeat: : no-repeat;
     background-image: url('https://coverr.co/videos/cheering-crowd-V9QvvMj7id');
     background-size:cover;
     position:relative;
+} */
+
+/* *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+} */
+
+/* .showcase {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    min-height: 100vh;
+} */
+
+.homepage video {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
+
+.auth-home {
+    min-height:100%;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size:cover;
+    /* position:relative; */
+  }

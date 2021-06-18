@@ -4,41 +4,48 @@
     {% for memory in user.memories_list %}
         <li>{{ memory }} </li>
     {% endfor %} -->
-{% for event_id in memories %}
 
-<!-- Card -->
-<div class="card" style="width: 30rem";>
+<h1>Event Journal </h1>
 
-        <!-- Card image -->
-        <img class="card-img-top" src="{{ memories[event_id][0].pic.loc }}" alt="Card image cap">
-        <!-- Card content -->
-        <div class="card-body">
+<div class="event-container">
+    <div class="row">
+        {% for event_id in memories %}
+
+        <div class="col-sm-4">
+            <!-- Card -->
+            <div class="card">
+                <!-- Card image -->
+                <img class="card-img-top img-fluid" src="{{ memories[event_id][0].pic.loc }}" alt="Card image cap">
+                <!-- Card content -->
+                <div class="card-body">
   
-        <!-- Title -->
-        <h4 class="card-title"><a>{{events[event_id].date}} {{ events[event_id].event_name }} </a></h4>    
+                    <!-- Title -->
+                    <h1 class="card-title"><a>{{events[event_id].date}} {{ events[event_id].event_name }} </a></h1>    
         
-        <!-- Text -->
-        <p class="card-text">
-            <br>
-            Headliners: {{ events[event_id].headliner }}
-            <br>
-            Venue: {{ events[event_id].venue.name }}
-            <br>
-            Favorite Song: {{ memories[event_id][0].fav_song }} 
-            <br>
-            Party Squad: {{ memories[event_id][0].squad }}
-            <br>
-            Memory: {{ memories[event_id][0].memory }}
-            <br>
-        </p>
-  
+                    <!-- Text -->
+                    <p class="card-text">
+                        <b>Headliners:</b> {{ events[event_id].headliner }}
+                        <br>
+                        <b>Venue:</b> {{ events[event_id].venue.name }}
+                        <br>
+                        <b>Favorite Song:</b> {{ memories[event_id][0].fav_song }} 
+                        <br>
+                        <b>Party Squad:</b> {{ memories[event_id][0].squad }}
+                        <br>
+                        <b>Memory:</b> {{ memories[event_id][0].memory }}
+                        
+                        <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-  
-</div>
 <!-- Card -->
-        <br>
 
-{% endfor %}
+<a href=/home>
+    <button>Home</button>
+</a>
 <!-- 
     <ul>
         {% for event_id in memories %}

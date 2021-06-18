@@ -15,25 +15,26 @@
     background-image: url('/static/img/TSJ.png');
     background-size:cover;
     /* position:relative; */
-  }
+}
 
 
-  .auth-home {
+.auth-home {
     min-height:100%;
     background-position: 0 0;
     background-repeat: no-repeat;
     background-size:cover;
     /* position:relative; */
-  }
+}
 
 /* <!-- Event Journal Page -->  */
 .event-container{
     min-height:100%;
     background-position: 0 0;
     background-repeat: no-repeat;
-    background-color: #214a80;
+    background-image: url('/static/img/light.jpg');
     background-size:cover;
-    padding-left: 80px;
+    position: absolute;
+    padding-left: 40px;
     justify-content: space-evenly;
 }
 
@@ -41,10 +42,11 @@
     width: 100%;
     height: 40vh;
     object-fit: cover;
+    border-radius: 25px;
 }
 
 .card {
-    width: 100%;
+    width: 85%;
     padding-left: 10px:
     padding-top: 5px;
     padding-bottom: 20px;
@@ -53,6 +55,8 @@
     border-collapse: separate;
     boarder: 10px;
     border-spacing: 0 30px;
+    border-radius: 25px;
+    opacity: .85;
 }
 
 .card-body {

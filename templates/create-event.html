@@ -1,48 +1,44 @@
+
 {% extends 'base.html' %}
+
+{% block head %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" 
+rel="stylesheet"
+integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" 
+crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../static/css/createevent.css">
+{% endblock %}
+
 {% block body %}
-<div class="sign in">
-
-    <h1>Journal Entry</h1>
-    <h2>Jot it down</h2>
-    <form action="/events/create" method="POST" enctype="multipart/form-data">
-
-      <p>
-        Event Name <input type="text" name="event_name">
-      </p>
-    
-      <p>
-        Date <input type="date" name="date">
-      </p>
-
-      <p>
-        Headliner(s) <input type="text" name="headliner">
-      </p>
-
-      <p>
-        Venue <input type="text" name="venue">
-      </p>
-    
+<!DOCTYPE html>
+<html>
+<body class="login-dark">
+  <div class="journal-entry">
+  <h2 class="sr-only">Journal</h2>
+  <form action="/events/create" method="POST" enctype="multipart/form-data">
+    <div class="site-name"><h1>Journal Entry</h1> Never Forget the Good Times</div>
+    <p></p>
+    <div class="form-group"><input class="form-control" type="text" name="event_name" placeholder="Event"></div>
+    <div class="form-group"><input class="form-control" type="date" name="date" placeholder="Date"></div>
+    <div class="form-group"><input class="form-control" type="text" name="headliner" placeholder="Headliners"></div>
+    <div class="form-group"><input class="form-control" type="text" name="venue" placeholder="Venue"></div>
+    <div class="form-group"><input class="form-control" type="text" name="address" placeholder="Venue Address"></div>
+    <div class="form-group"><input class="form-control" type="text" name="venue" placeholder="Venue"></div>
+    <div class="form-group"><input class="form-control" type="text" name="fav_song" placeholder="Favorite Songs"></div>
+    <div class="form-group"><input class="form-control" type="text" name="memory" placeholder="Memories"></div>
+    <div class="form-group"><input class="form-control" type="text" name="squad" placeholder="Party Squad"></div>
 
       <p>
-        Venue Address <input type="text" name="address">
-      </p>
-
-      <p>
-        Favorite Songs <input type="text" name="fav_song">
-      </p>
-      <p>
-        Memories <input type="text" name="memory">
-      </p>
-
-      <p>
-        Party Squad <input type="text" name="squad">
-      </p>
-
-      <p>
-        <h3>Add Event Photo</h3>
+        <h4>Add Event Photo</h4>
       </p>
           <input type="file" name="my-file">
-          <input type ="submit">
+          <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
+
               <!-- <button id="upload_widget">Upload files</button> -->
         </form>
         </html>
@@ -66,4 +62,6 @@
     </form>
 
 </div>
+</body>
+</html>
 {% endblock %}

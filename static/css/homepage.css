@@ -3,10 +3,9 @@
     background-position: 0 0;
     background-repeat: no-repeat;
     background-image: url('/static/img/TSJ.png');
-    background-size:cover;
-    /* position:relative; */
+    background-size: cover;
   }
-  
+
   .login-dark form {
     max-width:480px;
     width:90%;
@@ -77,5 +76,4 @@
   .login-dark form .btn-primary:active {
     transform:translateY(1px);
   }
-  
   

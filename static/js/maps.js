@@ -5,7 +5,7 @@ let map;
 async function initMap() {
   // Map options
   let options = {
-    zoom:8,
+    zoom:13,
     center: { lat: 37.733795, lng: -122.446747 }
   }
   // New map 
@@ -30,7 +30,7 @@ async function initMap() {
 		'</div>'+
 		`<h3 id="firstHeading" class="firstHeading">${m.name}</h3>`+
 		'<p><div id="bodyContent">'+ `<div style="float:left; width:20%;"><img src="${m.pic_url}" width="120" height="80"/></div></p>` + 
-		`<p> <div id = "picture"> <div style="float:left; width:100%; margin-top: -100px;">${m.venue_name}</p>` +
+		`<p> <div id = "picture"> <div style="float:left; width:100%; margin-top: -100px;"> <h5>${m.venue_name}</h5></p>` +
 		'</div>'+
 		'</div>';
 

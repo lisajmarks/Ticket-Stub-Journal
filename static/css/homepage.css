@@ -21,12 +21,12 @@
     opacity: 0.9;
   }
   
-  /* .login-dark .illustration {
+  .login-dark .illustration {
     text-align:center;
-    padding:15px 0 20px;
+    padding:20px 0 1px;
     font-size:100px;
     color:#2980ef;
-  } */
+  }
   
   .login-dark .site-name {
     text-align: center;

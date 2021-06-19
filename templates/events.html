@@ -5,7 +5,25 @@
         <li>{{ memory }} </li>
     {% endfor %} -->
 
-<h1>Event Journal </h1>
+    <nav class="navbar navbar-expand-md navbar-blue">
+        <div class="container-fluid"> 
+            <a class="navbar-brand" href="#""><img src="/static/img/logosmall.png" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <!-- <li class="nav-item"><a class="nav-link active" aria-current="page" href="/profile">Profile</a></li> -->
+                <li class="nav-item"><a class="nav-link active" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/events">New Event</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/map">Event Map</a></li>
+              </ul>
+              </div>
+            </div>
+          </div>
+        </div>  
+        </div>
+      </nav>
 
 <div class="event-container">
     <div class="row">
@@ -20,7 +38,7 @@
                 <div class="card-body">
   
                     <!-- Title -->
-                    <h1 class="card-title"><a>{{events[event_id].date}} {{ events[event_id].event_name }} </a></h1>    
+                    <h1 class="card-title"><a>{{events[event_id].date}} {{ events[event_id].event_name }} </a></h1>   
         
                     <!-- Text -->
                     <p class="card-text">
@@ -43,9 +61,6 @@
     </div>
 <!-- Card -->
 
-<a href=/home>
-    <button>Home</button>
-</a>
 <!-- 
     <ul>
         {% for event_id in memories %}

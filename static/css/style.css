@@ -1,5 +1,6 @@
-.homepage video {
-    position: absolute;
+.homepage #myVideo {
+    position: fixed;
+    z-index: -1;
     top: 50px;
     left: 0;
     width: 100%;
@@ -7,23 +8,37 @@
     object-fit: cover;
 }
 
+.navbar-blue {
+    background: #041833;
+    height: 10em;
 
-.login-dark {
-    min-height:100%;
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    background-image: url('/static/img/TSJ.png');
-    background-size:cover;
-    /* position:relative; */
 }
 
+.nav-link {
+    color: white !important;
+    font-size: 2em;
+}
+
+.nav-item {
+    padding-right: 3em;
+}
 
 .auth-home {
     min-height:100%;
     background-position: 0 0;
     background-repeat: no-repeat;
     background-size:cover;
-    /* position:relative; */
+}
+
+.navbar-brand {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.card-title {
+    font-color: #1B98A6;
 }
 
 /* <!-- Event Journal Page -->  */
@@ -47,14 +62,14 @@
 
 .card {
     width: 85%;
-    padding-left: 10px:
-    padding-top: 5px;
-    padding-bottom: 20px;
+    padding-left: 10rem:
+    padding-top: 5rem;
+    padding-bottom: .75rem;
     align-items: left;
     margin: auto;
     border-collapse: separate;
-    boarder: 10px;
-    border-spacing: 0 30px;
+    boarder: 10rem;
+    border-spacing: 0 30rem;
     border-radius: 25px;
     opacity: .85;
 }
@@ -68,5 +83,6 @@
 }
 
 .col-sm-4 {
-    padding: 15px;
+    padding: 3rem;
 }
+

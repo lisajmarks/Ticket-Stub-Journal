@@ -5,7 +5,7 @@ let map;
 async function initMap() {
   // Map options
   let options = {
-    zoom:13,
+    zoom:11,
     center: { lat: 37.733795, lng: -122.446747 }
   }
   // New map 

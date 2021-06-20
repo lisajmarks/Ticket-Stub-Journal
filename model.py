@@ -26,7 +26,7 @@ class User(db.Model):
     bio = db.Column(db.Text)
     city = db.Column(db.Text)
 
-    memories = db.relationship('Memory', backref='user') #create user attribute
+    memories = db.relationship('Memory', backref='user', order_by='Memory.memory_id.desc()') #create user attribute
 
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email} >'
